@@ -1,0 +1,27 @@
+Phần 1: Phân tích & So sánh
+1. So sánh Đường dẫn tuyệt đối và Đường dẫn tương đối
+Đường dẫn tuyệt đối (Absolute Path):
+ -Là đường dẫn chỉ rõ vị trí cố định của file bắt đầu từ ổ đĩa gốc (ví dụ: C:\Users\Ban_Than\Desktop\Project\data\db.csv).
+ -Có tính cố định cao nên rất dễ gây lỗi FileNotFoundError khi di chuyển dự án sang máy khác, thay đổi tên người dùng hoặc đổi ổ đĩa lưu trữ.
+Đường dẫn tương đối (Relative Path):
+ -Là đường dẫn xác định vị trí của file mục tiêu dựa trên vị trí của file script hiện tại (sử dụng ký hiệu . cho thư mục hiện tại và .. cho thư mục cha).
+ -Có tính linh hoạt cao, giúp toàn bộ thư mục dự án có thể chạy bình thường trên bất kỳ máy tính nào mà không bị đứt gãy liên kết.
+2. Tính thời gian tải file 2GB (Gói 80 Mbps)
+ Bước 1: Quy đổi tốc độ mạng sang Tốc độ tải=80Mbps/8=10MB/s
+ Bước 2: Quy đổi dung lượng file 2GB sang MB (Chuẩn hệ thập phân 1GB=1000MB)
+         2GB=2000MB
+ Bước 3: Tính thời gian tải lý thuyết
+         Thời gian tải= 2,000MB/10MB/s =200 giây (3phút20giây)
+Phần 2: Giải pháp kỹ thuật & Thao tác an toàn
+ 1. Viết lại đường dẫn dạng Relative Path
+ -Giả sử file code của bạn nằm ở Project/src/main.py và cần truy cập db.csv nằm ở Project/data/db.csv:
+ -Python
+  # Dùng ký hiệu '..' để lùi ra thư mục Project, sau đó đi vào data/db.csv
+  db_path = "../data/db.csv"
+2. Thiết lập "View Options" hiện đuôi file chống mã độc
+ Để phát hiện file ẩn đuôi như tai-lieu-on-tap.pdf.exe:
+  Bước 1: Mở File Explorer (Win + E).
+  Bước 2: Chọn tab View trên thanh công cụ.
+  Bước 3: Tích chọn File name extensions (Hiện phần mở rộng tên file).
+  Bước 4: Tích chọn Hidden items (Hiện các file/thư mục bị ẩn).
+Nhận diện: Sau khi bật, file giả mạo sẽ lộ rõ đuôi thực tế là .exe (tai-lieu-on-tap.pdf.exe) thay vì file tài liệu .pdf. Tuyệt đối không click đúp để mở file này.
